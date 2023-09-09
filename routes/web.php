@@ -31,7 +31,18 @@ use Illuminate\Routing\Route as RoutingRoute;
 
 // Route::get('contact', [ContactController::class, 'index']);
 Route::get('contact', 'App\Http\Controllers\ContactController@index');
-Route::get('admin', 'App\Http\Controllers\Admin\DashboardController');
+
 
 
 Route::resource('admin/categories', 'App\Http\Controllers\Admin\CategoriesController');
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+    Route::get('admin', 'App\Http\Controllers\Admin\DashboardController');
+});
