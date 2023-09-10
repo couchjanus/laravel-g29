@@ -45,4 +45,24 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
     Route::get('admin', 'App\Http\Controllers\Admin\DashboardController');
+
+    Route::get('admin/brands/trashed', 'App\Http\Controllers\Admin\BrandController@trashed')->name('brands.trashed');
+
+    Route::post('admin/brands/restore/{id}', 'App\Http\Controllers\Admin\BrandController@restore')->name('brands.restore');
+
+    Route::delete('admin/brands/force/{id}', 'App\Http\Controllers\Admin\BrandController@force')->name('brands.force');
+
+    Route::resource('admin/brands', 'App\Http\Controllers\Admin\BrandController');
+
+ 
+    Route::get('admin/tags', 'App\Http\Controllers\Admin\TagController@index')->name('tags.index');
+    Route::post('admin/tags', 'App\Http\Controllers\Admin\TagController@store')->name('tags.store');
+    Route::get('admin/tags/create', 'App\Http\Controllers\Admin\TagController@create')->name('tags.create');
+    Route::get('admin/tags/{tag:slug}', 'App\Http\Controllers\Admin\TagController@show')->name('tags.show');
+    Route::put('admin/tags/{tag:slug}', 'App\Http\Controllers\Admin\TagController@update')->name('tags.update');
+    Route::delete('admin/tags/{tag:slug}', 'App\Http\Controllers\Admin\TagController@destroy')->name('tags.destroy');
+    Route::get('admin/tags/{tag:slug}/edit', 'App\Http\Controllers\Admin\TagController@edit')->name('tags.edit');
+
+
+
 });
