@@ -54,7 +54,7 @@ Route::middleware([
 
     Route::resource('admin/brands', 'App\Http\Controllers\Admin\BrandController');
 
- 
+
     Route::get('admin/tags', 'App\Http\Controllers\Admin\TagController@index')->name('tags.index');
     Route::post('admin/tags', 'App\Http\Controllers\Admin\TagController@store')->name('tags.store');
     Route::get('admin/tags/create', 'App\Http\Controllers\Admin\TagController@create')->name('tags.create');
@@ -66,3 +66,10 @@ Route::middleware([
 
 
 });
+
+use App\Livewire\Users\{CreateUser, EditUser, ShowUser};
+Route::get('/users/create', CreateUser::class)->name('users.create');
+Route::get('/users/{user}', ShowUser::class)->name('users.show');
+Route::get('/users/{user}/edit', EditUser::class)->name('users.edit');
+
+Route::get('/users', 'App\Http\Controllers\Admin\UserTable')->name('users.index');
