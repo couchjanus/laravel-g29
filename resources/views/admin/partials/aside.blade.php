@@ -8,9 +8,13 @@
 
         <a href="/admin" class="flex items-center active-nav-link text-white py-4 pl-6 nav-item"><i class="fas fa-tachometer mr-3"></i> Dashboard</a>
 
+        <a href="/users" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item"><i class="fas fa-user mr-3"></i> Users</a>
+
         <a href="/admin/categories" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item"><i class="fas fa-table mr-3"></i> Categories</a>
         <a href="/admin/brands" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item"><i class="fas fa-table mr-3"></i> Brands</a>
         <a href="/admin/tags" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item"><i class="fas fa-table mr-3"></i> Tags</a>
+
+        <a href="/products" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item"><i class="fas fa-table mr-3"></i> Products</a>
 
     </nav>
 

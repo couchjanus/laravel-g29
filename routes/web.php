@@ -73,3 +73,10 @@ Route::get('/users/{user}', ShowUser::class)->name('users.show');
 Route::get('/users/{user}/edit', EditUser::class)->name('users.edit');
 
 Route::get('/users', 'App\Http\Controllers\Admin\UserTable')->name('users.index');
+
+use App\Livewire\Products\{CreateProduct, UpdateProduct, ShowProduct};
+Route::get('/products/create', CreateProduct::class)->name('products.create');
+Route::get('/products/{product}', ShowProduct::class)->name('products.show');
+Route::get('/products/{product}/edit', UpdateProduct::class)->name('products.edit');
+
+Route::get('/products', 'App\Http\Controllers\Admin\ProductTable')->name('products.index');
