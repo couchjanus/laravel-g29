@@ -43,6 +43,34 @@
                         {{ $header }}
                     @endif
 
+                    <div>
+                        @if (session()->has('success'))
+                        <div class="rounded-r-md p-4 border-l-4 mb-3 bg-green-100 border-green-400 text-green-800">{{ session()->get('success') }}</div>
+
+                        @endif
+
+                        @if (session()->has('error'))
+                        <div class="rounded-r-md p-4 border-l-4 mb-3 bg-red-100 border-red-400 text-red-800">{{ session()->get('error') }}</div>
+
+                        @endif
+
+                        @if (session()->has('warning'))
+                        <div class="rounded-r-md p-4 border-l-4 mb-3 bg-gold-100 border-gold-400 text-gold-800">{{ session()->get('warning') }}</div>
+
+                        @endif
+
+                        @if (session()->has('info'))
+                        <div class="rounded-r-md p-4 border-l-4 mb-3 bg-blue-100 border-blue-400 text-blue-800">{{ session()->get('info') }}</div>
+
+                        @endif
+
+
+
+
+
+
+                    </div>
+
                      <!-- Page Content -->
                     {{ $slot }}
 

@@ -12,21 +12,22 @@ class ProductForm extends Form
 {
     public ?Product $product;
 
-    public $file, $title;
-
     #[Rule('required|min:5')]
     public $name;
+
     #[Rule('required|min:10')]
     public $description;
 
     public $status;
 
+    #[Rule('required|integer')]
     public $category_id;
+    #[Rule('required|integer')]
     public $brand_id;
 
     #[Rule('image|max:1024')]
     public $cover;
-
+    #[Rule('required|decimal:2')]
     public $price;
 
     public function setProduct(Product $product)
@@ -44,24 +45,51 @@ class ProductForm extends Form
 
     public function update()
     {
+
+
+        $validatedData = $this->validate([
+
+        ]);
+
+        $this->status = $this->status ? 1 : 0;
+
+        if($this->cover == null) {
+            session()->flash('error', "The cover field is required!");
+            return;
+        }
+        else if ($this->cover->getClientOriginalName()) {
+            $validatedData['filename'] = $this->cover->store('products', 'public');
+
+            $this->cover = $validatedData['filename'];
+
+        }
+
         $this->product->update(
             $this->all()
         );
+
+        session()->flash('success', "Product updated successfully!");
     }
 
     public function store()
     {
+        $this->status = $this->status ? 1 : 0;
+
+        if($this->cover == null) {
+            session()->flash('error', "The cover field is required!");
+            return;
+        }
 
         $validatedData = $this->validate([
-            'title' => 'required',
-            'file' => 'required'
+
         ]);
 
-        $validatedData['name'] = $this->cover->store('products', 'public');
+        $validatedData['filename'] = $this->cover->store('products', 'public');
 
-        $this->cover = $validatedData['name'];
+        $this->cover = $validatedData['filename'];
 
         Product::create($this->all());
+        session()->flash('success', "Product created successfully!");
     }
 
 }

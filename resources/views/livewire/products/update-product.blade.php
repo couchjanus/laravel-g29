@@ -62,13 +62,13 @@
 <div class="md:flex mb-6">
 <div class="md:w-1/3">
 <legend class="uppercase tracking-wide text-sm">Cover Image</legend>
-<img src="/storage/{{{ $form->cover }}}">
+<img src="{{ asset(Storage::url($form->cover)) }}">
 </div>
 
 <div class="md:flex-1 px-3 text-center">
 
 <div class="button bg-blue-700 hover:bg-blue-800 text-white mx-auto cusor-pointer relative">
-<input class="opacity-0 absolute pin-x pin-y" type="file" name="cover">
+<input class="opacity-0 absolute pin-x pin-y" type="file" wire:model="form.cover">
 Change Cover Image
 </div>
 </div>

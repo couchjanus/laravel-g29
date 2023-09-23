@@ -7,11 +7,13 @@ use App\Livewire\Forms\ProductForm;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use App\Models\Product;
+use Livewire\WithFileUploads;
 
 #[Title('Edit Product')]
 #[Layout('layouts.admin')]
 class UpdateProduct extends Component
 {
+    use WithFileUploads;
     public ProductForm $form;
 
     public $title = "Edit Product";

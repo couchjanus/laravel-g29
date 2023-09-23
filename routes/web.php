@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 
 Route::get('/hello', function ($name = "World") {
@@ -80,3 +80,7 @@ Route::get('/products/{product}', ShowProduct::class)->name('products.show');
 Route::get('/products/{product}/edit', UpdateProduct::class)->name('products.edit');
 
 Route::get('/products', 'App\Http\Controllers\Admin\ProductTable')->name('products.index');
+
+
+use App\Livewire\App\{HomePage,};
+Route::get('/', HomePage::class)->name('index');
