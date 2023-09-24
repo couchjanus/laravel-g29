@@ -82,5 +82,8 @@ Route::get('/products/{product}/edit', UpdateProduct::class)->name('products.edi
 Route::get('/products', 'App\Http\Controllers\Admin\ProductTable')->name('products.index');
 
 
-use App\Livewire\App\{HomePage,};
+use App\Livewire\App\{HomePage, ShoppingCart};
 Route::get('/', HomePage::class)->name('index');
+
+
+Route::get('shopping-cart', ShoppingCart::class)->name('shopping.cart');

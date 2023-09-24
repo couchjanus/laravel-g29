@@ -27,4 +27,20 @@ class HomePage extends Component
     {
         $this->perPage += 10;
     }
+
+    public function addToCart($id)
+    {
+        $product = Product::findOrFail($id);
+        \Cart::add([
+            'id' => $product->id,
+            'name' => $product->name,
+            'price' => $product->price,
+            'quantity' => 1,
+            'attributes' => [
+                'image' => $product->cover,
+            ]
+            ]);
+        $this->dispatch('refresh');
+
+    }
 }
