@@ -11,6 +11,21 @@
                     </a>
                 </div>
 
+                <div class="space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link href="{{ route('index') }}" :active="request()->routeIs('index')" wire:navigate>
+                        {{ __('Home') }}
+                    </x-nav-link>
+                    <x-nav-link href="{{ route('shopping.cart') }}" :active="request()->routeIs('shopping.cart')" wire:navigate>
+                        {{ __('Cart') }}
+                    </x-nav-link>
+                    <x-nav-link href="{{ route('contact') }}" :active="request()->routeIs('contact')">
+                        {{ __('Contact') }}
+                    </x-nav-link>
+                    <x-nav-link href="{{ route('about') }}" :active="request()->routeIs('about')">
+                        {{ __('About') }}
+                    </x-nav-link>
+                </div>
+
                 <!-- Navigation Links -->
                 @auth
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">

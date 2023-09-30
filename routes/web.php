@@ -30,7 +30,7 @@ use App\Http\Controllers\ContactController;
 use Illuminate\Routing\Route as RoutingRoute;
 
 // Route::get('contact', [ContactController::class, 'index']);
-Route::get('contact', 'App\Http\Controllers\ContactController@index');
+Route::get('contact', 'App\Http\Controllers\ContactController@index')->name('contact');
 
 
 
@@ -44,6 +44,9 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+    Route::get('checkout', [App\Http\Controllers\CheckoutController::class, 'checkout'])->name('checkout.index');
+    Route::post('checkout/order', [App\Http\Controllers\CheckoutController::class, 'placeOrder'])->name('checkout.place.order');
+
     Route::get('admin', 'App\Http\Controllers\Admin\DashboardController');
 
     Route::get('admin/brands/trashed', 'App\Http\Controllers\Admin\BrandController@trashed')->name('brands.trashed');

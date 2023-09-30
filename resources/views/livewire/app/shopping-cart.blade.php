@@ -102,7 +102,7 @@
                   </div>
                 </div>
             </div>
-
+            <div class="d-block"><a href="{{ route('checkout.index') }}" class="flex justify-center px-4 py-2 bg-indigo-500 rounded-br-lg hover:bg-indigo-600 text-white">Checkout</a></div>
         </div>
     </div>
   </div>
