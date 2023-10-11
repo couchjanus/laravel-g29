@@ -17,6 +17,15 @@
         <div>
         @error('form.password') <span class="error">{{ $message }} @enderror</span>
         </div>
+
+        <div>
+        <select wire:model="form.selectedrole" class="mb-3">
+            <option value="" selected>Choose role</option>
+            @foreach ($roles as $key => $value )
+                <option value="{{ $key }}">{{ $value }}</option>
+            @endforeach
+        </select>
+        </div>
         <button type="submit">Update User</button>
     </form>
 </div>

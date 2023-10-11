@@ -5,6 +5,7 @@ namespace App\Livewire\Forms;
 use Livewire\Attributes\Rule;
 use Livewire\Form;
 use App\Models\User;
+// use Spatie\Permission\Models\Role;
 
 class UserForm extends Form
 {
@@ -19,6 +20,9 @@ class UserForm extends Form
     #[Rule('required|string|min:8')]
     public $password  = '';
 
+    // public $roles;
+
+    public $selectedrole = NULL;
 
     public function setUser(User $user)
     {
@@ -27,6 +31,8 @@ class UserForm extends Form
         $this->name = $user->name;
 
         $this->email = $user->email;
+
+        // $this->roles = Role::pluck('name', 'name')->all();
     }
 
     public function store()
@@ -39,6 +45,11 @@ class UserForm extends Form
         $this->user->update(
             $this->all()
         );
+
+        if ($this->selectedrole) {
+            $this->user->assignRole($this->selectedrole);
+        }
+
     }
 
 

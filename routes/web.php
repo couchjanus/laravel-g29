@@ -36,6 +36,8 @@ Route::get('contact', 'App\Http\Controllers\ContactController@index')->name('con
 
 Route::resource('admin/categories', 'App\Http\Controllers\Admin\CategoriesController');
 
+// Auth::routes(['verify' => true]);
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -57,6 +59,7 @@ Route::middleware([
 
     Route::resource('admin/brands', 'App\Http\Controllers\Admin\BrandController');
 
+    Route::resource('admin/roles', 'App\Http\Controllers\Admin\RoleController');
 
     Route::get('admin/tags', 'App\Http\Controllers\Admin\TagController@index')->name('tags.index');
     Route::post('admin/tags', 'App\Http\Controllers\Admin\TagController@store')->name('tags.store');
@@ -90,3 +93,35 @@ Route::get('/', HomePage::class)->name('index');
 
 
 Route::get('shopping-cart', ShoppingCart::class)->name('shopping.cart');
+
+
+Route::get('/order', function() {
+    return new App\Mail\OrderShipped();
+});
+
+Route::get('/send-order', function() {
+    \Mail::to('test@my.com')->send(new App\Mail\OrderShipped());
+    return "<h2>The message has been sentto MailTrap successfully. </h2>";
+});
+
+
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+
+    return redirect('/home');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+use Illuminate\Http\Request;
+
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+
+    return back()->with('message', 'Verification link sent!');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+

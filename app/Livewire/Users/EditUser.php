@@ -8,7 +8,7 @@ use App\Models\User;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use App\Livewire\Forms\UserForm;
-
+use Spatie\Permission\Models\Role;
 
 #[Title('Edit User')]
 #[Layout('layouts.admin')]
@@ -22,9 +22,18 @@ class EditUser extends Component
 
     public $title = "Edit User";
 
+    public $roles;
+
+
     public function mount(User $user)
     {
+        $this->roles = Role::pluck('name', 'name')->all();
+        // dd($this->roles);
+
+
         $this->form->setUser($user);
+
+
         // $this->user = $user;
 
         // $this->fill(
